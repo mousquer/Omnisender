@@ -1,4 +1,4 @@
-**O que é Omnisender?**
+# O que é Omnisender?
 Omnisender é uma aplicação feita em Node.jsque utiliza envio para plataformas do Discord e WhatsApp simultaneamente.
 O objetivo do projeto é facilitar o envio da mesma mensagem em canais diferentes, de forma gratuita, sem que você precise pagar para utilizar uma função simples.
 No modelo atual possuí já as funções basicas de envio e formatação de texto para ambas aplicações.
