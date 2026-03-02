@@ -1,2 +1,1 @@
-# Omnisender-Final
-Projeto omnisender.
+# OmniSender
