@@ -241,11 +241,11 @@ app.post('/api/auth/forgot', loginLimiter, async (req, res) => {
         });
 
         await transporter.sendMail({
-            from: systemConfig.smtpUser || 'noreply@omnisender.com',
+            from: systemConfig.smtpUser || 'noreply@CorePing.com',
             to: email,
-            subject: 'OmniSender - Recuperação de Senha',
+            subject: 'CorePing - Recuperação de Senha',
             html: \`<h3>Recuperação de Senha</h3>
-                   <p>Você solicitou a redefinição de sua senha no OmniSender.</p>
+                   <p>Você solicitou a redefinição de sua senha no CorePing.</p>
                    <p>Seu código de segurança é: <strong>\${code}</strong></p>
                    <p><em>Atenção: Este código expira em 90 segundos.</em></p>\`
         });
@@ -533,4 +533,5 @@ function getIp() { const i = os.networkInterfaces(); for(let n in i) for(let d o
     },
     
     getResetScript: () => `const {PrismaClient}=require('@prisma/client');const prisma=new PrismaClient();const bcrypt=require('bcryptjs');const readline=require('readline');const rl=readline.createInterface({input:process.stdin,output:process.stdout});const ask=q=>new Promise(r=>rl.question(q,r));async function main(){console.clear();console.log("=== RESET SENHA ===");const email=await ask("Email: ");const u=await prisma.user.findUnique({where:{email}});if(!u)process.exit(1);const p1=await ask("Senha: ");const p2=await ask("Confirma: ");if(p1!==p2)process.exit(1);if((await ask("CONFIRMAR? "))!=='CONFIRMAR')process.exit(0);await prisma.user.update({where:{email},data:{password:await bcrypt.hash(p1,10)}});console.log("OK");process.exit(0);}main();`
+
 };
