@@ -1,49 +1,69 @@
-# OmniSender: Unified Open-Source Messaging
-OmniSender is a self-hosted Node.js application designed to broadcast messages simultaneously to Discord and WhatsApp.
+# OmniSender: Unified and Open-Source Messaging
+OmniSender is a self-hosted application developed in Node.js, designed to broadcast messages simultaneously to Discord and WhatsApp.
 
-The project's goal is to facilitate and democratize multichannel communication. Without the need to subscribe to third-party services for basic features, OmniSender allows you to centralize your messaging for free in a straightforward manner. The tool was built to be accessible, running seamlessly on both Windows and Linux environments.
+The project's goal is to facilitate and democratize multichannel communication. Without the need to subscribe to third-party services for simple functions, OmniSender allows you to centralize your broadcasts directly and for free. The tool was designed to be accessible, running perfectly in both Windows and Linux environments.
 
-## Features (v1.0.0)
-The first release delivers the essentials for your messaging workflow, focusing on usability, control, and security:
+## Features (v1.0.4)
+The first release already delivers the essentials for the messaging workflow, focusing on usability, control, and security:
 
-**Simplified Setup:**
+* **Windows/Linux/AWS:** Install in just a few minutes in the environment you are most familiar with (can even run locally).
 
-* **WhatsApp:** Quickly connect your account via QR Code scanning using your device's camera directly within the interface.
+* **WhatsApp:** Quickly connect your account by scanning a QR Code using your device's camera directly in the interface.
 
 * **Discord:** Easily configure the destination channel using your Webhook.
 
-* **Granular Destination Control:** Flexibility to broadcast your message to both platforms simultaneously or select just one, depending on your needs.
+* **Granular Destination Control:** Flexibility to send the message to both platforms simultaneously or select only one, according to your campaign's needs.
 
-* **Access Management:** Role-Based Access Control (RBAC) featuring Super Admin, Admin, and Sender privilege levels, ensuring that only authorized users can dispatch messages.
+* **Security Lock:** Smart adjustment on the sending screen that disables broadcasting and issues an alert if the user tries to send a message without having at least one application (WhatsApp or Discord) configured in the system.
 
-* **Audit and Logging:** Comprehensive activity history, recording the message title and the user responsible for the broadcast.
+* **Access Management:** Role-based access control (RBAC) with privilege levels: Super Admin, Admin, and Sender, ensuring only authorized personnel can broadcast.
 
-* **Smart Splitting:** Messages exceeding 2,000 characters are automatically divided and paginated (e.g., [1/3], [2/3], [3/3]), natively bypassing the limitations of Discord's free tier.
+* **Auditing and History:** Complete log of activities, recording the message title and the user responsible for the broadcast.
 
-* **User Experience (UX):** Clean interface with a real-time character counter and a security confirmation modal to prevent accidental long-text dispatches.
+* **Smart Splitting:** Messages longer than 2,000 characters are automatically split and paginated (e.g., [1/3], [2/3], [3/3]), natively bypassing Discord's free version limitations.
 
-* **Security First:** During installation, the system performs a scan and automatically alerts you if any package dependency contains known vulnerabilities.
+* **User Experience (UX):** Clean interface with a real-time character counter and a security confirmation modal to prevent accidental sending of long texts.
 
-## Installation
-To run the project locally, clone the repository and execute the following commands in the root directory:
+* **Security First:** During installation, the system scans and automatically alerts you if any package dependency has known vulnerabilities.
+
+## Prerequisites
+* **Node.js:** Version 18.x or higher installed on your system.
+
+* **Git:** To clone the repository (no mandatory).
+
+* **Linux/AWS:** Base operating system libraries must be up-to-date, as the WhatsApp engine (Puppeteer) runs in the background and requires native dependencies like libnss3.
+
+## How to Install
+The installation is fully automatic. The setup script detects whether you are using Windows, Linux, or cloud instances (AWS) and handles package installation and database formatting on its own.
+
+To run the project locally or on your server, clone the repository and run the commands below in the root directory:
 
 Bash
+
+directly in node:
+```
+  node .\setup.js
+```
+OR
+
+Directly in the application.
+```
     npm install
     npm run prisma:generate
-    n pm run prisma:migrate
+    npm run prisma:migrate
     npm run dev
-(Note: The application will initialize automatically after the setup is complete).
+```
+(Note: The application will start automatically after the setup is complete).
 
-## Roadmap (Upcoming Features)
-
+## Roadmap (Future Features)
 Our next development steps include:
 
-* **New Integrations:** Support for broadcasting on Telegram and Google Chat.
+* **New Integrations:** Support for broadcasting to Telegram and Google Chat.
 
-* **Interface Enhancements:** Preview screen (view how the message will render on each platform before sending) and a secure password recovery flow.
+* **Interface Improvements:** Preview screen (see how the message will be rendered on each platform before sending) and a secure password recovery flow.
 
-* **Community Management:** Creation and segmentation of recipient groups.
+* **Community Management:** Creation and segmentation of broadcasting groups.
 
-* **Active Control:** The ability to delete previously sent messages directly from the OmniSender dashboard.
+* **Active Control:** Ability to delete already sent messages directly from the OmniSender panel.
 
-* **Optimized Setup:** Refactoring and error handling in the installation process to make it fail-safe.
+* **Optimized Setup:** Refactoring and error handling in the installation process to make it fail-proof.
